@@ -1,5 +1,5 @@
-import IrregularKernel from "./KernelIrregular";
-import Kernel from "./Kernel";
+import IrregularKernel from "./KernelIrregular.js";
+import Kernel from "./Kernel.mjs";
 
 /**
  * Creates an upward-facing kernel.
@@ -33,14 +33,15 @@ export function LeftKernel(length=3){
     return new Kernel(-length, 0, 0, 0);
 }
 
+
 /**
- * Creates an downard-facing kernel.
+ * Creates a horizontal kernel.
  *
- * @param {number} [length=3] - Kernel left bounds.
+ * @param {number} [length=2] - Kernel left bounds.
  * @returns {Kernel} - Left kernel
  */
-export function LeftKernel(length=3){
-    return new Kernel(-length, 0, 0, 0);
+export function HorizontalKernel(length=2){
+    return new Kernel(-length, length, 0, 0);
 }
 
 //reverse kernels because Y starts at top

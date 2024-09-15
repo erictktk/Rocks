@@ -1,3 +1,5 @@
+import { PixelArray } from "eric-pixelarrayutils/PixelArray";
+
 export class ScalingMethods {
     FLOOR = 0;
     ROUND = 1;
@@ -12,7 +14,7 @@ export class ScalingMethods {
  * @returns {PixelArray} - a new PixelArray
  */
 export function floatScale(pixelArray, sx, sy){
-  constv[width, height] = [pixelArray.width, pixelArray.height];
+  const [width, height] = [pixelArray.width, pixelArray.height];
   return nearestNeighborScale(pixelArray, Math.round(width*sx), Math.round(height*sy));
 }
 

@@ -1,5 +1,5 @@
 import { PixelArray } from "eric-pixelarrayutils/PixelArray";
-import Kernel from './Kernel';
+import Kernel from './Kernel.mjs';
 
 /**
  * Creates a mask from a given pixel array. If the `solid` parameter is true, any non-transparent pixel in the 
@@ -61,8 +61,8 @@ export function Expand(pixelArray, kernel=null, color=null){
 
 
 import * as PixelUtils from "./PixelUtils.js";
-import * as Kernel from "./Kernel.js";
-import { PixelArray } from "./PixelArray.js";
+//import * as Kernel from "./Kernel.js";
+//import { PixelArray } from "./PixelArray.js";
 
 
 
@@ -225,7 +225,7 @@ export function ExpandByDetailSingleIter(pixelArray, detailArray, kernel=null, n
                     continue;
                 }
 
-                for(var b = kernelOffsets.yDown; b < kernelOffsets.yUp b += 1){
+                for(var b = kernelOffsets.yDown; b < kernelOffsets.yUp; b += 1){
                     curY = j + b;
                     if  (curY >= height || curY < 0 ){
                         continue;

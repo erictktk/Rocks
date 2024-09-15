@@ -1,3 +1,8 @@
+import { PixelArray } from "eric-pixelarrayutils/PixelArray";
+
+const black = [0, 0, 0, 255];
+const white = [255, 255, 255, 255];
+
 /**
  * Generates a gradient on a 2D plane given two colors, dimensions, position offsets, and gradient distance.
  * 
@@ -11,7 +16,7 @@
  * 
  * @returns {PixelArray} The pixel array containing gradient data.
  */
-function GenerateGradient(width, height, xOffsetTop, xOffsetBottom, gradientDistanceInPixels, color1=, color2){
+function GenerateGradient(width, height, xOffsetTop, xOffsetBottom, gradientDistanceInPixels, black, white){
     const pos1 = new Vector(xOffsetTop, height);
     const pos2 = new Vector(xOffsetBottom, 0);
 

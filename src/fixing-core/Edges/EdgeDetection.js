@@ -1,7 +1,10 @@
-import { PixelArray } from "eric-pixelarrayutils";
+import { PixelArray } from "eric-pixelarrayutils/PixelArray";
+import * as PixelUtils from "eee_pixelarrayutils/PixelUtils";
 import Kernel from "./Kernel";
 
 //export function TestIfLowerEdge(pixelArray)
+
+const p = new PixelArray();
 
 /**
  * Highlights the edges of pixels in the given pixelArray based on the alpha value of neighboring pixels.
@@ -35,12 +38,10 @@ export function DetectColorEdges(pixelArray, kernel=null, randomOrder=false, min
 
     for(let i = 0; i < pixelArray.width; i += 1){
         for(let j = 0; j < pixelArray.height; j += 1){
-            kernel.getColorBool
+            //kernel.getColorBool
         }
     }
 }
-
-
 
 /**
  * Detects edges between different colors in a pixel array.
@@ -85,7 +86,7 @@ export function detectEdges(pixelArray, kernel, fillColor=[255, 255, 255, 255], 
 }
 
 /**
- * Detects and returns an array of inner edges
+ * Detects and returns an array of inner edges, fill color is white
  * 
  * @param {PixelArray} pixelArray - The input pixel array.
  * @param {Kernel|null} kernel - The kernel used for edge detection.
@@ -162,7 +163,61 @@ export function detectOuterEdges(pixelArray, kernel=null, fillColor=[255, 255, 2
     return edgeArray;
 }
 
+
 /**
+ * 
+ * @param {PixelArray} pixelArray 
+ * @param {Kernel|null} kernel 
+ * @param {Function|null} predicate 
+ * @returns {PixelArray}
+ */
+export function detectEdgesGrayscale(pixelArray, kernel, predicate=blankPredicate) {
+    const resultArray = new PixelArray(null, pixelArray.width, pixelArray.height);
+    const [width, height] = [pixelArray.width, pixelArray.height];
+
+    if (!kernel) {
+        kernel = new Kernel();
+    }
+
+    const maxDistance = kernel.getMaxDistance();
+
+    for (let i = 0; i < width; i += 1) {
+        for (let j = 0; j < height; j += 1) {
+            let minDistance = 1000000;
+
+            for (const [xOffset, yOffset] of kernel.offsets) {
+                const [curX, curY] = [i + xOffset, j + yOffset];
+
+                if (curX < 0 || curX >= width || curY < 0 || curY >= height) continue;
+
+                const neighborPixel = pixelArray.getColorValue(curX, curY);
+                if (predicate(neighborPixel)) {
+                    const distance = Math.sqrt(xOffset * xOffset + yOffset * yOffset);
+                    minDistance = Math.min(minDistance, distance);
+                }
+            }
+
+            // Convert distance to a grayscale value (assuming max kernel distance won't exceed 255)
+            const grayValue = Math.round(minDistance/maxDistance*255);
+            resultArray.setColorValue(i, j, [grayValue, grayValue, grayValue, 255]);
+        }
+    }
+
+    return resultArray;
+}
+
+// Example Predicate Function
+// This function could be any condition you want to test on the pixels
+function examplePredicate(pixel) {
+    // Example: Check if the pixel is not transparent
+    return pixel[3] > 0;
+}
+
+function blankPredicate(pixel){
+    return pixel[3] < 20;
+ }
+
+ /**
  * Compares two arrays for equality.
  * 
  * @param {Array} a - The first array.

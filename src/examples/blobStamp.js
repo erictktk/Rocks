@@ -7,6 +7,8 @@ import { PixelArray } from "eric-pixelarrayutils/PixelArray";
 import { RandomWrapper } from "eric-random-wrapper";
 import * as RGBUtils from "eric-hsvutils/HSVUtils";
 
+
+
 //Composition.
 /**
  * @param {PixelArray} pixelArray
@@ -62,7 +64,7 @@ export function VaryScale(mainObj, widthRange=[1, 2], heightRange=[1, 2], copies
             resultArrays.push( ScalingMethods.floatScale(cur, sx, sy) );
         }
         else{
-            resultArrays.push( ScalingMethods.floatScale(pixelArray, sx, sy) )
+            resultArrays.push( ScalingMethods.floatScale(mainObj, sx, sy) )
         }
     }
 
@@ -100,7 +102,7 @@ export function VaryHue(mainObj, rotateRange = [-10, 10], copies=10, seed=null){
             resultArrays.push( ChangeHueOfPixelArray(cur, hueRotate) );
         }
         else{
-            resultArrays.push( ChangeHueOfPixelArray(pixelArray, hueRotate));
+            resultArrays.push( ChangeHueOfPixelArray(mainObj, hueRotate));
         }
     }
 

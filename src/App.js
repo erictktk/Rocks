@@ -1,5 +1,5 @@
-import { DisplayImages } from "./examples/loadimages";
-import ImageProcessor, { ToPixelArray } from "./PixelArrayReact";
+//import { DisplayImages } from "./examples/loadimages";
+import ImageProcessor, { ToPixelArray, PSDProcessor, PSDProcessorAuto } from "./PixelArrayReact";
 import "./styles.css";
 import pic0 from "./ImagesFolder/pixil-frame-0.png";
 import PersistentDrawer from "./gui/persistentDrawer";
@@ -7,6 +7,8 @@ import PersistentDrawer from "./gui/persistentDrawer";
 import ColorPaletteDisplay from "./rocks";
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+//thing = false;
 
 const palette = {
   //primary: "#41A8F8",   // Bright Blue
@@ -70,7 +72,7 @@ export function OldApp() {
   );
 }
 
-export default function App() {
+export function AppImageProcessor() {
     return (
       <ThemeProvider theme={theme}>
       <div className="App">
@@ -83,3 +85,19 @@ export default function App() {
       </ThemeProvider>
     );
   }
+
+
+export function AppPSDProcessor(){
+  return (
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <h1>PSDProcessor</h1>
+
+        <PSDProcessorAuto/>
+      </div>
+    </ThemeProvider>
+  )
+}
+
+
+export default AppPSDProcessor;

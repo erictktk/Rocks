@@ -1,6 +1,8 @@
 import {PixelArray} from "eric-pixelarrayutils/PixelArray";
 import { RandomWrapper } from "eric-random-wrapper";
 
+
+
 /**
  * Stamps a
 
@@ -9,6 +11,7 @@ import { RandomWrapper } from "eric-random-wrapper";
  * @param {number} [xPos=0] - The x-position where the topArray starts relative to the bottomArray.
  * @param {number} [yPos=0] - The y-position where the topArray starts relative to the bottomArray.
  */
+/*
 export function stampMutateBad(bottomArray, topArray, xPos = 0, yPos = 0) {
     const blendedArrayData = new Uint8ClampedArray(bottomArray.array);
     //const blendedArray = new PixelArray(blendedArrayData, bottomArray.width, bottomArray.height);
@@ -38,6 +41,7 @@ export function stampMutateBad(bottomArray, topArray, xPos = 0, yPos = 0) {
     }
     return blendedArray;
 }
+*/
 
 /**
  * 
@@ -123,7 +127,7 @@ function overBlend(bottom, top) {
  */
 export function stampMutate(bottom, arrayOfStamps, blendMode = 'over', func=null, seed=null) {
     if (!func){
-        func = (color) => { color[3] > 200 };
+        func = (color) => { return color[3] > 200 };
     }
 
     const randObj = new RandomWrapper(seed);

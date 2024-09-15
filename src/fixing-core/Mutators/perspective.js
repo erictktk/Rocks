@@ -1,4 +1,5 @@
-import { PixelArray } from "eric-pixelarrayutils";
+import { PixelArray } from "eric-pixelarrayutils/PixelArray";
+import * as PixelUtils from "eric-pixelarrayutils/PixelUtils";
 
 /**
  * Compresses the pixel array vertically by skipping rows.

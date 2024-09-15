@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "eric-pixelarrayutils": ["node_modules/eric-pixelarrayutils"],
+      "nodePixelMapper/*": ["./nodePixelMapper/*"]
+    }
+  }
+}

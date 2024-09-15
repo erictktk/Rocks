@@ -10,7 +10,8 @@ export class Island{
         this.pixelArray = pixelArray;
         this.verticalLineBounds = [];
         this.horizontalLineBounds = [];
-        this.xMin, this.xMax, this.yMin, this.yMax = 0, 0, 0, 0;
+        this.xMin = 0; this.xMax = 0; this.yMin = 0; this.yMax = 0;
+
         this._getBounds();
         this.getVerticalLineBounds();
         this.getHorizontalLineBounds();
@@ -40,7 +41,7 @@ export class Island{
                 }
             }
         }
-        this.xMin, this.xMax, this.yMin, this.yMax = [xMin, xMax, yMin, yMax];
+        [this.xMin, this.xMax, this.yMin, this.yMax] = [xMin, xMax, yMin, yMax];
     }
     /*
     get verticalLine(){

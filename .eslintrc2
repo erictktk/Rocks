@@ -1,0 +1,18 @@
+{
+    "env": {
+      "node": true,
+      "es2021": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:node/recommended"
+    ],
+    "plugins": [
+      "node"
+    ],
+    "rules": {
+      "node/no-missing-require": "error",   // Ensures `require` statements point to valid files or modules
+      "node/no-extraneous-require": "error", // Ensures `require` is used for installed modules
+      "node/no-unpublished-require": "error" // Ensures `require` is used only for modules that are listed in package.json
+    }
+  }

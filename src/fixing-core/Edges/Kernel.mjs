@@ -1,4 +1,4 @@
-import {PixelArray} from "eric-pixelarrayutils/PixelArray";
+import {PixelArray} from "eee_pixelarrayutils/PixelArray";
 
 export default class Kernel{
     constructor(xLeft=-1, xRight=1, yDown=-1, yUp=1){
@@ -18,6 +18,13 @@ export default class Kernel{
             }
         }
         return offsets;
+    }
+
+    getMaxDistance(){
+        const maxHorizontalDistance = Math.max(Math.abs(this.xLeft), Math.abs(this.xRight));
+        const maxVerticalDistance = Math.max(Math.abs(this.yUp), Math.abs(this.yDown));
+
+        return Math.sqrt(maxHorizontalDistance * maxHorizontalDistance + maxVerticalDistance * maxVerticalDistance);
     }
 
 
@@ -73,9 +80,9 @@ export default class Kernel{
      * @param {Function} func - predicate function.
      * @returns {Array<Array<Boolean>>}
      */
-    getColorBool()
+    getColorBool(){
 
-    get colors(pixelArray, )
+    }
     
 }
 

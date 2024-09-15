@@ -1,5 +1,6 @@
 import { PixelArray } from "eric-pixelarrayutils/PixelArray";
-import Kernel from './Kernel';
+import * as PixelUtils from "eric-pixelarrayutils/PixelUtils";
+import Kernel from './Kernel.mjs';
 import { RandomWrapper } from "eric-random-wrapper";
 
 /**

@@ -55,15 +55,15 @@ export function RandomDeleteMutate(pixelArray, bias, seed=null) {
  * Uses a RandomWrapper object to only keep a certain amount of pixels within a fixed range
  * 
  * @param {PixelArray} pixelArray - The target PixelArray object
- * @param {Array<Number>|Number} - The likelihood factor for erasing a pixel (1 means every pixel will be erased, 0 means none)
+ * @param {Array<Number>|Number} range - The likelihood factor for erasing a pixel (1 means every pixel will be erased, 0 means none)
  * @param {Number|null} seed - Optional seed for the random generation
  */
 export function RandomKeep(pixelArray, range=[3, 5], seed=null, fillColor=null, minAlpha=1){
-    if (typeof range === 'Number'){
+    if (typeof range === 'number'){
         range = [range, range];
     }
 
-    const newPixelArray = PixelArray.copyFrom(null, pixelArray.width, pixelArray,height);
+    const newPixelArray = PixelArray.copyFrom(null, pixelArray.width, pixelArray.height);
 
     const [width, height] = [pixelArray.width, pixelArray.height];
 
@@ -75,7 +75,7 @@ export function RandomKeep(pixelArray, range=[3, 5], seed=null, fillColor=null, 
     const indexToXY = (index) => { return [index%width, Math.floor(index/width)]};
 
     for(let i = 0; i < width*height; i += 1){
-        const [x, y] = indexToXY(index);
+        const [x, y] = indexToXY(i);
 
         const curPixel = pixelArray.getColorValue(x, y);
         if (curPixel[3] >= minAlpha){

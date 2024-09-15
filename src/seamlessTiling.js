@@ -1,6 +1,14 @@
 import { blendPixelArrays, samplePixelArray } from "./sampling";
+import { PixelArray } from "eric-pixelarrayutils/PixelArray";
 import { RandomWrapper } from 'eric-random-wrapper';
 
+
+/**
+ * A function that cuts up a PixelArray in four quadrants and moves them to opposite quandrant diagonally
+ * 
+ * @param {PixelArray} pixelArray 
+ * @returns {PixelArray} 
+ */
 export function prepareSeamless(pixelArray) {
     const halfWidth = pixelArray.width / 2;
     const halfHeight = pixelArray.height / 2;
@@ -27,6 +35,40 @@ export function prepareSeamless(pixelArray) {
 
     return newPixelArray;
 }
+
+export function stampOverSeams(pixelArray, brushPixelArray, seed=16){
+    //make sure brushPixelArray is at least 4 times smaller than pixelArray
+
+    const [width, height] = [pixelArray.width, pixelArray.height];
+    
+    const [bWidth, bHeight] = [brushPixelArray.width, brushPixelArray.height];
+
+    //returns pixel array sourced from the PixelArray
+    const sourceRandom = () => {
+        //select pixel randomly from one of four quadrants s.t. in random position in one of the quadrants
+        //such that brushPixelArray sources pixels from WITHIN the quadrants
+    }
+
+    const randObj = new RandomWrapper(seed);
+
+    const widthIters = width/bWidth + 2;
+    const totalWidthCovered = widthIters*bWidth;
+
+    let cumuWidth = 0;
+    //stamp 
+    for(let i = 0; i < widthIters; i += 1){
+        //stamp pixelarrays sourced from sourceRandom over the midpoint line y = height/2 with some randomness in distance
+    }
+
+    const heightIters = height/bHeight + 2;
+    const totalHeightCovered = heightIters*bHeight;
+
+    let cumuHeight = 0;
+    for(let i = 0; i < heightIters; i += 1){
+        //stamp pixelarrays sourced from sourceRandom over the midpoint line x = width/2 with some randomness in distance
+    }
+}
+
 
 /**
  * Creates a seamless tile and stamps brushes on the vertical and horizontal seams.
